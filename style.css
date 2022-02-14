@@ -1,0 +1,84 @@
+body
+{
+    background-color: rgb(244, 255, 215);
+    font-family: sans-serif;
+}
+
+.content
+{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+h1
+{
+    font-size: 3em;
+    margin-top: 2em;
+    margin-bottom: 0.1em;
+}
+
+h2
+{
+    font-weight:100;
+    margin-top: 0.2em;
+    color: gray;
+}
+
+h3
+{
+    margin-top: 1.5em;
+}
+
+.critterList
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%/3, max(64px, 100%/12)), 1fr));
+    grid-gap: 10px;
+}
+
+.critterCard
+{
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: none;
+}
+
+.fishCard
+{
+    background-color: #e3f2fd;
+}
+
+.bugCard
+{
+    background-color: #fffde7;
+}
+
+.seaCard
+{
+    background-color: #ede7f6;
+}
+
+.critterCard img
+{
+    width: 80%;
+}
+
+.selectedCritter
+{
+    width: 80%;
+    margin: auto;
+}
+
+.selectedCritter img
+{
+    max-height:512px;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+}
+
+.selectedCritter p
+{
+    font-size: 2rem;
+}
