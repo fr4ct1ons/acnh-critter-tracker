@@ -7,7 +7,7 @@ function CritterQuery(critterType, callBackFunction)
         }
     };
 
-    var url = "http://acnhapi.com/v1/";
+    var url = "https://acnhapi.com/v1/";
 
     switch (critterType)
     {
