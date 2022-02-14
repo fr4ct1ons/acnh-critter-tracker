@@ -90,7 +90,7 @@ function DrawSeaCreatures()
         card.value = i;
         card.appendChild(icon);
         card.className = "critterCard seaCard";
-        card.onclick = function() {SelectFish(i)};
+        card.onclick = function() {SelectSeaCreature(i)};
         critterDiv.appendChild(card);
     }
 }
@@ -213,6 +213,27 @@ function SelectFish(index)
     var name = fishes[index]["name"]["name-USen"];
     price.textContent = "Price:" + fishes[index].price
     priceSpecial.textContent = "C.J's price: " + fishes[index]["price-cj"];
+    h1.textContent = name.charAt(0).toUpperCase() + name.slice(1);
+
+    selectedCritter.appendChild(h1);
+    selectedCritter.appendChild(img);
+    selectedCritter.appendChild(price)
+    selectedCritter.appendChild(priceSpecial)
+
+}
+
+function SelectSeaCreature(index)
+{
+    console.log(index);
+    selectedCritter.innerHTML = '';
+    var h1 = document.createElement("h1");
+    var img = document.createElement("img");
+    var price = document.createElement("p")
+    var priceSpecial = document.createElement("p")
+
+    img.src = seaCreatures[index].image_uri;
+    var name = seaCreatures[index]["name"]["name-USen"];
+    price.textContent = "Price:" + seaCreatures[index].price
     h1.textContent = name.charAt(0).toUpperCase() + name.slice(1);
 
     selectedCritter.appendChild(h1);

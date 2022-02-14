@@ -4,6 +4,40 @@ body
     font-family: sans-serif;
 }
 
+@media (orientation: portrait) {
+    .content
+    {
+        width: 95% !important;
+    }
+
+    h1
+    {
+        font-size: 8.5vw !important;
+    }
+
+    h2
+    {
+        font-size: 4vw;
+    }
+
+    h3
+    {
+        font-size: 8vw;
+    }
+
+    label
+    {
+        display: block;
+        font-size: 6.5vw;
+    }
+
+    .selectedCritter img
+    {
+        max-height: 164px !important;
+        max-width: 300px !important;
+    }
+}
+
 .content
 {
     width: 80%;
@@ -15,7 +49,7 @@ h1
 {
     font-size: 3em;
     margin-top: 2em;
-    margin-bottom: 0.1em;
+    margin-bottom: 0.3em;
 }
 
 h2
@@ -66,8 +100,12 @@ h3
 
 .selectedCritter
 {
-    width: 80%;
     margin: auto;
+}
+
+.selectedCritter h1
+{
+    margin-top: 1em;
 }
 
 .selectedCritter img
@@ -76,9 +114,12 @@ h3
     max-width: 100%;
     width: auto;
     height: auto;
+    background-color: white;
 }
 
 .selectedCritter p
 {
     font-size: 2rem;
+    margin-top: .3em;
+    margin-bottom: .3em;
 }
