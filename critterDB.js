@@ -34,6 +34,8 @@ function GetCookie(name) {
     if (parts.length === 2) return parts.pop().split(';').shift();
   }
 
+
+
 function GetCritters()
 {
     selectedCritter = document.getElementById("selectedCritter");
@@ -43,11 +45,18 @@ function GetCritters()
     var tempC = GetCookie("creatures");
 
     console.log(tempF);
+    console.log(tempB);
+    console.log(tempC);
 
     try {
-        fishes = JSON.parse('[' + tempF +']');
-        bugs = JSON.parse('[' + tempB +']');
-        seaCreatures = JSON.parse('[' + tempC +']');
+        if(typeof tempF !== 'undefined')
+            fishes = JSON.parse("[" + "0,1" + "]");
+
+        if(typeof tempB !== 'undefined')
+            bugs = JSON.parse("[" + tempB +"]");
+
+        if(typeof tempC !== 'undefined')
+            seaCreatures = JSON.parse("[" + tempC + "]");
         
         console.log(seaCreatures);
         console.log(fishes);
@@ -391,7 +400,7 @@ function TrackBug(index)
     }
     
 
-    document.cookie = "bugs=" + bugs.toString() + ";";
+    document.cookie = "bugs=" + trackedBugs.toString() + ";";
     console.log(trackedBugs.toString());
     console.log(document.cookie);
 }
