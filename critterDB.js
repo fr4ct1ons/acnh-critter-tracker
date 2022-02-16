@@ -38,9 +38,23 @@ function GetCritters()
 {
     selectedCritter = document.getElementById("selectedCritter");
     
-    var temp = GetCookie("fishes");
+    var tempF = GetCookie("fishes");
+    var tempB = GetCookie("bugs");
+    var tempC = GetCookie("creatures");
 
-    console.log(temp);
+    console.log(tempF);
+
+    try {
+        fishes = JSON.parse('[' + tempF +']');
+        bugs = JSON.parse('[' + tempB +']');
+        seaCreatures = JSON.parse('[' + tempC +']');
+        
+        console.log(seaCreatures);
+        console.log(fishes);
+        console.log(bugs);
+    } catch (error) {
+        console.log(error);
+    }
 
     CritterQuery(1, _processFish);
     CritterQuery(2, _processBugs);
