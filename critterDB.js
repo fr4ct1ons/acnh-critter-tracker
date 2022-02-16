@@ -27,6 +27,7 @@ function CritterQuery(critterType, callBackFunction)
 }
 
 let selectedCritter;
+let critterList;
 
 function GetCookie(name) {
     const value = `; ${document.cookie}`;
@@ -39,14 +40,10 @@ function GetCookie(name) {
 function GetCritters()
 {
     selectedCritter = document.getElementById("selectedCritter");
-    
+    critterList = document.getElementById("critterList");
     var tempF = GetCookie("fishes");
     var tempB = GetCookie("bugs");
     var tempC = GetCookie("creatures");
-
-    console.log(tempF);
-    console.log(tempB);
-    console.log(tempC);
 
     try {
         if(typeof tempF !== 'undefined')
@@ -57,10 +54,7 @@ function GetCritters()
 
         if(typeof tempC !== 'undefined')
             seaCreatures = JSON.parse("[" + tempC + "]");
-        
-        console.log(seaCreatures);
-        console.log(fishes);
-        console.log(bugs);
+
     } catch (error) {
         console.log(error);
     }
@@ -125,10 +119,22 @@ function DrawSeaCreatures()
         icon.src = element.icon_uri;
 
         card.value = i;
+        card.id = "scr_" + i;
         card.appendChild(icon);
         card.className = "critterCard seaCard";
         card.onclick = function() {SelectSeaCreature(i)};
-        critterDiv.appendChild(card);
+
+        if(trackedCreatures.includes(i))
+        {
+            card.className += "Tracked";
+            critterDiv.insertBefore(card, critterDiv.firstChild);
+        }
+        else
+        {
+            critterDiv.appendChild(card);
+        }
+        
+        
     }
 }
 
@@ -175,11 +181,24 @@ function DrawBugs()
         icon.src = element.icon_uri;
 
         card.value = i;
+        card.id = "bug_" + i;
         //card.innerHTML = element.name["name-USen"];
         card.appendChild(icon);
         card.className = "critterCard bugCard";
         card.onclick = function() {SelectBug(i)};
-        critterDiv.appendChild(card);
+
+        if(trackedCreatures.includes(i))
+        {
+            card.className += "Tracked";
+            critterDiv.insertBefore(card, critterDiv.firstChild);
+        }
+        else
+        {
+            critterDiv.appendChild(card);
+        }
+
+
+        
     }
 }
 
@@ -227,11 +246,23 @@ function DrawFishes()
         icon.src = element.icon_uri;
 
         card.value = i;
+        card.id="fsh_" + i;
         //card.innerHTML = element.name["name-USen"];
         card.appendChild(icon);
         card.className = "critterCard fishCard";
         card.onclick = function() {SelectFish(i)};
-        critterDiv.appendChild(card);
+
+        if(trackedCreatures.includes(i))
+        {
+            card.className += "Tracked";
+            critterDiv.insertBefore(card, critterDiv.firstChild);
+        }
+        else
+        {
+            critterDiv.appendChild(card);
+        }
+
+        
     }
 }
 
@@ -274,17 +305,21 @@ function SelectFish(index)
 
 function TrackFish(index)
 {
+    let card = document.getElementById("fsh_" + index);
+
     if(!trackedFishes.includes(index))
     {
         trackedFishes.push(index);
+        card.className += "Tracked";
+        critterList.insertBefore(card, critterList.firstChild);
     }
     else
     {
         trackedFishes = trackedFishes.filter(function(item) {
             return item !== index;
         })
+        card.className = "critterCard fishCard";
     }
-    
 
     document.cookie = "fishes=" + trackedFishes.toString() + ";";
     console.log(trackedFishes.toString());
@@ -331,15 +366,20 @@ function SelectSeaCreature(index)
 
 function TrackCreature(index)
 {
+    let card = document.getElementById("scr_" + index);
+
     if(!trackedCreatures.includes(index))
     {
         trackedCreatures.push(index);
+        card.className += "Tracked";
+        critterList.insertBefore(card, critterList.firstChild);
     }
     else
     {
         trackedCreatures = trackedCreatures.filter(function(item) {
             return item !== index;
         })
+        card.className = "critterCard seaCard";
     }
     
 
@@ -387,16 +427,20 @@ function SelectBug(index)
 
 function TrackBug(index)
 {
+    let card = document.getElementById("bug_" + index);
 
     if(!trackedBugs.includes(index))
     {
         trackedBugs.push(index);
+        card.className += "Tracked";
+        critterList.insertBefore(card, critterList.firstChild);
     }
     else
     {
         trackedBugs = trackedBugs.filter(function(item) {
             return item !== index;
         })
+        card.className = "critterCard bugCard";
     }
     
 

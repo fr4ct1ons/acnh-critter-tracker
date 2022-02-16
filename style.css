@@ -93,6 +93,21 @@ h3
     background-color: #ede7f6;
 }
 
+.fishCardTracked
+{
+    background-color: #64b5f6;
+}
+
+.bugCardTracked
+{
+    background-color: #fff176;
+}
+
+.seaCardTracked
+{
+    background-color: #9575cd;
+}
+
 .critterCard img
 {
     width: 80%;
