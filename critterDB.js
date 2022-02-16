@@ -28,9 +28,19 @@ function CritterQuery(critterType, callBackFunction)
 
 let selectedCritter;
 
+function GetCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
+
 function GetCritters()
 {
     selectedCritter = document.getElementById("selectedCritter");
+    
+    var temp = GetCookie("fishes");
+
+    console.log(temp);
 
     CritterQuery(1, _processFish);
     CritterQuery(2, _processBugs);
@@ -41,6 +51,11 @@ let fishes;
 let bugs;
 let seaCreatures;
 
+let trackedCreatures = [];
+let trackedFishes = [];
+let trackedBugs = [];
+
+let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', "Nov", 'Dec'];
 
 let hemisphere = "northern";
 
@@ -50,7 +65,6 @@ function _processSea(data)
     //list = obj.map(item => {
         //return item;
     //})
-    console.log(Object.values(obj));
     seaCreatures = Object.values(obj);
 
     DrawSeaCreatures();
@@ -101,7 +115,6 @@ function _processBugs(data)
     //list = obj.map(item => {
         //return item;
     //})
-    console.log(Object.values(obj));
     bugs = Object.values(obj);
     DrawBugs();
 }
@@ -153,7 +166,6 @@ function _processFish(data)
     //list = obj.map(item => {
         //return item;
     //})
-    console.log(Object.values(obj));
     fishes = Object.values(obj);
     DrawFishes();
 }
@@ -220,6 +232,40 @@ function SelectFish(index)
     selectedCritter.appendChild(price)
     selectedCritter.appendChild(priceSpecial)
 
+    var checkbox = document.createElement("input");
+    var label = document.createElement("label");
+    label.for = "TrackCritter";
+    checkbox.type = "checkbox";
+    checkbox.id = "trackCritter";
+    checkbox.name="TrackCritter";
+
+    label.textContent = "Track critter";
+    checkbox.onchange= function() {TrackFish(index);}
+    if(trackedFishes.includes(index))
+    {
+        checkbox.checked = true;
+    }
+    selectedCritter.appendChild(label);
+    selectedCritter.appendChild(checkbox);
+}
+
+function TrackFish(index)
+{
+    if(!trackedFishes.includes(index))
+    {
+        trackedFishes.push(index);
+    }
+    else
+    {
+        trackedFishes = trackedFishes.filter(function(item) {
+            return item !== index;
+        })
+    }
+    
+
+    document.cookie = "fishes=" + trackedFishes.toString() + ";";
+    console.log(trackedFishes.toString());
+    console.log(document.cookie);
 }
 
 function SelectSeaCreature(index)
@@ -236,11 +282,47 @@ function SelectSeaCreature(index)
     price.textContent = "Price:" + seaCreatures[index].price
     h1.textContent = name.charAt(0).toUpperCase() + name.slice(1);
 
+
+
     selectedCritter.appendChild(h1);
     selectedCritter.appendChild(img);
     selectedCritter.appendChild(price)
     selectedCritter.appendChild(priceSpecial)
 
+    var checkbox = document.createElement("input");
+    var label = document.createElement("label");
+    label.for = "TrackCritter";
+    checkbox.type = "checkbox";
+    checkbox.id = "trackCritter";
+    checkbox.name="TrackCritter";
+
+    label.textContent = "Track critter";
+    checkbox.onchange= function() {TrackCreature(index);}
+    if(trackedCreatures.includes(index))
+    {
+        checkbox.checked = true;
+    }
+    selectedCritter.appendChild(label);
+    selectedCritter.appendChild(checkbox);
+}
+
+function TrackCreature(index)
+{
+    if(!trackedCreatures.includes(index))
+    {
+        trackedCreatures.push(index);
+    }
+    else
+    {
+        trackedCreatures = trackedCreatures.filter(function(item) {
+            return item !== index;
+        })
+    }
+    
+
+    document.cookie = "creatures=" + trackedCreatures.toString() + ";";
+    console.log(trackedCreatures.toString());
+    console.log(document.cookie);
 }
 
 function SelectBug(index)
@@ -263,6 +345,41 @@ function SelectBug(index)
     selectedCritter.appendChild(price)
     selectedCritter.appendChild(priceSpecial)
 
+    var checkbox = document.createElement("input");
+    var label = document.createElement("label");
+    label.for = "TrackCritter";
+    checkbox.type = "checkbox";
+    checkbox.id = "trackCritter";
+    checkbox.name="TrackCritter";
+
+    label.textContent = "Track critter";
+    checkbox.onchange= function() {TrackBug(index);}
+    if(trackedBugs.includes(index))
+    {
+        checkbox.checked = true;
+    }
+    selectedCritter.appendChild(label);
+    selectedCritter.appendChild(checkbox);
+}
+
+function TrackBug(index)
+{
+
+    if(!trackedBugs.includes(index))
+    {
+        trackedBugs.push(index);
+    }
+    else
+    {
+        trackedBugs = trackedBugs.filter(function(item) {
+            return item !== index;
+        })
+    }
+    
+
+    document.cookie = "bugs=" + bugs.toString() + ";";
+    console.log(trackedBugs.toString());
+    console.log(document.cookie);
 }
 
 function ChangeHemisphere()
