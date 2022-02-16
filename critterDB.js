@@ -187,7 +187,7 @@ function DrawBugs()
         card.className = "critterCard bugCard";
         card.onclick = function() {SelectBug(i)};
 
-        if(trackedCreatures.includes(i))
+        if(trackedBugs.includes(i))
         {
             card.className += "Tracked";
             critterDiv.insertBefore(card, critterDiv.firstChild);
@@ -252,7 +252,7 @@ function DrawFishes()
         card.className = "critterCard fishCard";
         card.onclick = function() {SelectFish(i)};
 
-        if(trackedCreatures.includes(i))
+        if(trackedFishes.includes(i))
         {
             card.className += "Tracked";
             critterDiv.insertBefore(card, critterDiv.firstChild);
