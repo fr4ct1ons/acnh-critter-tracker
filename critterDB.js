@@ -47,13 +47,13 @@ function GetCritters()
 
     try {
         if(typeof tempF !== 'undefined')
-            fishes = JSON.parse("[" + "0,1" + "]");
+            trackedFishes = JSON.parse("[" + tempF + "]");
 
         if(typeof tempB !== 'undefined')
-            bugs = JSON.parse("[" + tempB +"]");
+            trackedBugs = JSON.parse("[" + tempB +"]");
 
         if(typeof tempC !== 'undefined')
-            seaCreatures = JSON.parse("[" + tempC + "]");
+            trackedCreatures = JSON.parse("[" + tempC + "]");
 
     } catch (error) {
         console.log(error);
