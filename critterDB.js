@@ -39,6 +39,8 @@ function GetCookie(name) {
 
 function GetCritters()
 {
+    google.charts.load('current', {'packages':['corechart']});
+
     selectedCritter = document.getElementById("selectedCritter");
     critterList = document.getElementById("critterList");
     var tempF = GetCookie("fishes");
@@ -281,6 +283,8 @@ function SelectFish(index)
     priceSpecial.textContent = "C.J's price: " + fishes[index]["price-cj"];
     h1.textContent = name.charAt(0).toUpperCase() + name.slice(1);
 
+
+
     selectedCritter.appendChild(h1);
     selectedCritter.appendChild(img);
     selectedCritter.appendChild(price)
@@ -301,6 +305,45 @@ function SelectFish(index)
     }
     selectedCritter.appendChild(label);
     selectedCritter.appendChild(checkbox);
+
+        
+    var available = document.createElement('p');
+    available.textContent = "Availability:";
+    selectedCritter.appendChild(available)
+    let charts = document.createElement("div");
+    selectedCritter.appendChild(charts);
+    charts.className="charts";
+    let timeChart = document.createElement("div");
+    timeChart.className="timeChart";
+    charts.appendChild(timeChart);
+    let cols = [];
+
+    var data = [['Status', 'Value', { role: 'style' }]];
+    for (let i = 0; i < 24; i++) {
+        let status = "Inactive";
+        let color = '#e3f2fd'
+        if(fishes[index].availability['time-array'].includes(i))
+        {
+            status = "Active";
+            color = '#64b5f6';
+        }
+        status += " - " + i + ":00"
+        data.push([status, 1, color])
+        cols.push(color);
+    }
+    console.log(data);
+    data = google.visualization.arrayToDataTable(data);
+    var options = {
+        title: '',
+        pieHole: 0.6,
+        colors: cols,
+        legend: 'none',
+        //height: 300,
+        //width: 300
+    }
+
+    var chart = new google.visualization.PieChart(timeChart);
+    chart.draw(data, options);
 }
 
 function TrackFish(index)
@@ -362,6 +405,44 @@ function SelectSeaCreature(index)
     }
     selectedCritter.appendChild(label);
     selectedCritter.appendChild(checkbox);
+
+    var available = document.createElement('p');
+    available.textContent = "Availability:";
+    selectedCritter.appendChild(available)
+    let charts = document.createElement("div");
+    selectedCritter.appendChild(charts);
+    charts.className="charts";
+    let timeChart = document.createElement("div");
+    timeChart.className="timeChart";
+    charts.appendChild(timeChart);
+    let cols = [];
+
+    var data = [['Status', 'Value', { role: 'style' }]];
+    for (let i = 0; i < 24; i++) {
+        let status = "Inactive";
+        let color = '#e3f2fd'
+        if(seaCreatures[index].availability['time-array'].includes(i))
+        {
+            status = "Active";
+            color = '#64b5f6';
+        }
+        status += " - " + i + ":00"
+        data.push([status, 1, color])
+        cols.push(color);
+    }
+    console.log(data);
+    data = google.visualization.arrayToDataTable(data);
+    var options = {
+        title: '',
+        pieHole: 0.6,
+        colors: cols,
+        legend: 'none',
+        //height: 300,
+        //width: 300
+    }
+
+    var chart = new google.visualization.PieChart(timeChart);
+    chart.draw(data, options);
 }
 
 function TrackCreature(index)
@@ -423,6 +504,44 @@ function SelectBug(index)
     }
     selectedCritter.appendChild(label);
     selectedCritter.appendChild(checkbox);
+
+    var available = document.createElement('p');
+    available.textContent = "Availability:";
+    selectedCritter.appendChild(available)
+    let charts = document.createElement("div");
+    selectedCritter.appendChild(charts);
+    charts.className="charts";
+    let timeChart = document.createElement("div");
+    timeChart.className="timeChart";
+    charts.appendChild(timeChart);
+    let cols = [];
+
+    var data = [['Status', 'Value', { role: 'style' }]];
+    for (let i = 0; i < 24; i++) {
+        let status = "Inactive";
+        let color = '#e3f2fd'
+        if(bugs[index].availability['time-array'].includes(i))
+        {
+            status = "Active";
+            color = '#64b5f6';
+        }
+        status += " - " + i + ":00"
+        data.push([status, 1, color])
+        cols.push(color);
+    }
+    console.log(data);
+    data = google.visualization.arrayToDataTable(data);
+    var options = {
+        title: '',
+        pieHole: 0.6,
+        colors: cols,
+        legend: 'none',
+        //height: 300,
+        //width: 300
+    }
+
+    var chart = new google.visualization.PieChart(timeChart);
+    chart.draw(data, options);
 }
 
 function TrackBug(index)
